@@ -43,6 +43,11 @@ impl InputPool {
         let val_f64 = val_res.as_f64().ok_or("Value could not be converted to f64")?;
         return Ok(val_f64)
     }
+    pub fn get_i64(&self, key: &str) -> Result<i64, Box<dyn std::error::Error>> {
+        let val_res = self.get(key)?;
+        let val_i64 = val_res.as_i64().ok_or("Value could not be converted to i64")?;
+        return Ok(val_i64)
+    }
 }
 
 pub fn check_change(session: &mut ShinySession, msg: &ShinyMsg, key: &str) -> bool {
