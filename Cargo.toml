@@ -16,3 +16,6 @@ rand = "0.8.5"
 base64 = "0.13"
 futures-util = { version = "0.3", default-features = false, features = ["std"] }
 log = "0.4"
+actix = "0.13.0"
+actix-web-actors = "4.1.0"
+shiny-rs_derive = { git = "https://github.com/andyquinterom/shiny-rs_derive.git", branch = "master" }

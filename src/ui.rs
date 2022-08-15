@@ -1,14 +1,20 @@
-pub async fn show_notification(session: &mut super::session::ShinySession, message: serde_json::Value) {
+use super::session::ShinyContext;
+
+pub fn show_notification<T>(session: &mut ShinyContext<T>, message: serde_json::Value)
+    where T: actix::Actor<Context = ShinyContext<T>>
+{
     let notification_msg = serde_json::json!({
         "notification": {
             "type": "show",
             "message": message
         }
     }).to_string();
-    session.ws.text(notification_msg).await.unwrap();
+    session.text(notification_msg);
 }
 
-pub async fn render_plot(session: &mut super::session::ShinySession, output_id: &str, plot: &str) {
+pub fn render_plot<T>(session: &mut ShinyContext<T>, output_id: &str, plot: &str)
+    where T: actix::Actor<Context = ShinyContext<T>>
+{
     let return_msg = serde_json::json!({
         "values": {
             output_id: {
@@ -18,10 +24,12 @@ pub async fn render_plot(session: &mut super::session::ShinySession, output_id: 
             }
         }
     }).to_string();
-    session.ws.text(return_msg).await.unwrap();
+    session.text(return_msg);
 }
 
-pub async fn render_ui(session: &mut super::session::ShinySession, output_id: &str, html: &str) {
+pub fn render_ui<T>(session: &mut ShinyContext<T>, output_id: &str, html: &str)
+    where T: actix::Actor<Context = ShinyContext<T>>
+{
     let return_msg = serde_json::json!({
         "values": {
             output_id: {
@@ -31,10 +39,12 @@ pub async fn render_ui(session: &mut super::session::ShinySession, output_id: &s
 
         }
     }).to_string();
-    session.ws.text(return_msg).await.unwrap();
+    session.text(return_msg);
 }
 
-pub async fn insert_ui(session: &mut super::session::ShinySession, selector: &str, _where: &str, html: &str) {
+pub fn insert_ui<T>(session: &mut ShinyContext<T>, selector: &str, _where: &str, html: &str)
+    where T: actix::Actor<Context = ShinyContext<T>>
+{
     let return_msg = serde_json::json!({
         "shiny-insert-ui": {
             "selector": selector,
@@ -46,16 +56,18 @@ pub async fn insert_ui(session: &mut super::session::ShinySession, selector: &st
             }
         }
     }).to_string();
-    session.ws.text(return_msg).await.unwrap();
+    session.text(return_msg);
 }
 
-pub async fn remove_ui(session: &mut super::session::ShinySession, selector: &str) {
+pub fn remove_ui<T>(session: &mut ShinyContext<T>, selector: &str)
+    where T: actix::Actor<Context = ShinyContext<T>>
+{
     let return_msg = serde_json::json!({
         "shiny-remove-ui": {
             "selector": selector,
             "multiple": false
         }
     }).to_string();
-    session.ws.text(return_msg).await.unwrap();
+    session.text(return_msg);
 }
 
