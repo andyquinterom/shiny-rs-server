@@ -92,6 +92,21 @@ impl ShinySession {
 }
 
 #[macro_export]
+macro_rules! bind_event {
+    (session: $session:expr, event:($( $event:expr ),*), expr: $expr:expr) => {
+        {
+            let mut temp_vec: Vec<String> = vec!();
+            $(
+                temp_vec.push($event.to_string());
+            )*
+            if temp_vec.contains(&$session.event) {
+                $expr;
+            }
+        }
+    }
+}
+
+#[macro_export]
 macro_rules! shiny_server {
     ($session:expr, init:($( $init:expr ),*), update: ($( $update:expr ),*), tick: ($( $tick:expr ),*)) => {
         {
