@@ -1,0 +1,3 @@
+[submodule "shiny-rs_derive"]
+	path = shiny-rs_derive
+	url = https://github.com/andyquinterom/shiny-rs_derive.git
