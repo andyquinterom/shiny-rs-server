@@ -4,9 +4,6 @@ pub use actix::prelude::*;
 use std::time::{Duration, Instant};
 use actix_web_actors::ws;
 
-const HEARTBEAT_INTERVAL: Duration = Duration::from_secs(5);
-const CLIENT_TIMEOUT: Duration = Duration::from_secs(10);
-
 pub trait ShinyLogic {
     fn input(&mut self) -> &mut super::input_pool::InputPool;
     fn get_last_hb(&self) -> Instant;
@@ -31,9 +28,9 @@ pub trait ShinyLogic {
             return false
         }
         if prev_val.is_null() | (v != prev_val) {
-            self.input().insert(&key, v.clone());
+            self.input().insert(key, v.clone());
             return true
         }
-        return false
+        false
     }
 }

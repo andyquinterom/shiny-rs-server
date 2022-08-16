@@ -1,6 +1,7 @@
 pub mod session;
 pub mod ui;
 pub extern crate shiny_rs_derive;
+pub mod types;
 
 #[cfg(test)]
 mod tests {

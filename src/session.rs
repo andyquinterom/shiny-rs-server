@@ -9,8 +9,7 @@ pub mod traits;
 use traits::*;
 
 pub mod input_pool;
-
-pub type ShinyContext<T> = actix_web_actors::ws::WebsocketContext<T>;
+pub use super::types::ShinyContext;
 pub type ShinySession = ShinyContext<ShinyServer>;
 
 #[derive(ShinyHandler)]
@@ -61,12 +60,11 @@ pub struct ShinyMsg {
 }
 
 pub fn generate_id() -> String {
-    let notification_id = rand::thread_rng()
+    rand::thread_rng()
         .sample_iter(&rand::distributions::Alphanumeric)
         .take(30)
         .map(char::from)
-        .collect::<String>();
-    return notification_id
+        .collect::<String>()
 }
 
 #[macro_export]
