@@ -304,6 +304,6 @@ That's all you need to get started!
 
 Still being written... For now, you can checkout the official
 example hosted on
-![https://experiment.indexmic.com](https://experiment.indexmic.com) or
+[https://experiment.indexmic.com](https://experiment.indexmic.com) or
 on the official repo
-![https://github.com/andyquinterom/shiny-rs-example](https://github.com/andyquinterom/shiny-rs-example).
+[https://github.com/andyquinterom/shiny-rs-example](https://github.com/andyquinterom/shiny-rs-example).
