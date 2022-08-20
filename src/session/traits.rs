@@ -20,7 +20,6 @@ pub trait ShinyLogic {
             session.ping(b"");
         });
     }
-
     fn check_change(&mut self, msg: &super::ShinyMsg, key: &str) -> bool {
         let v: &serde_json::Value = &msg.data[key];
         let prev_val = self.input().get(key).unwrap_or(&serde_json::Value::Null);
