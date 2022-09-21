@@ -19,3 +19,4 @@ log = "0.4"
 actix = "0.13.0"
 actix-web-actors = "4.1.0"
 shiny-rs_derive = { path = "./shiny-rs_derive" }
+render = "0.3.1"

@@ -84,3 +84,14 @@ macro_rules! changed {
     }};
 }
 
+// Create a function NS that takes in a string x and returns 
+// a function that takes in a string Y that returns
+// the concatenation of x and y
+#[macro_export]
+macro_rules! NS {
+    ($x:expr) => {
+        |y: &str| {
+            format!("{}-{}", $x, y)
+        }
+    };
+}

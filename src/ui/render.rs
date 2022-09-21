@@ -15,7 +15,7 @@ pub fn render_plot<T>(session: &mut ShinyContext<T>, output_id: &str, plot: &str
     session.text(return_msg);
 }
 
-pub fn render_ui<T>(session: &mut ShinyContext<T>, output_id: &str, html: &str)
+pub fn render_html<T>(session: &mut ShinyContext<T>, output_id: &str, html: &str)
     where T: actix::Actor<Context = ShinyContext<T>>
 {
     let return_msg = serde_json::json!({
@@ -42,7 +42,7 @@ pub fn show_notification<T>(session: &mut ShinyContext<T>, message: serde_json::
     session.text(notification_msg);
 }
 
-pub fn insert_ui<T>(session: &mut ShinyContext<T>, selector: &str, _where: &str, html: &str)
+pub fn insert_html<T>(session: &mut ShinyContext<T>, selector: &str, _where: &str, html: &str)
     where T: actix::Actor<Context = ShinyContext<T>>
 {
     let return_msg = serde_json::json!({
@@ -59,7 +59,7 @@ pub fn insert_ui<T>(session: &mut ShinyContext<T>, selector: &str, _where: &str,
     session.text(return_msg);
 }
 
-pub fn remove_ui<T>(session: &mut ShinyContext<T>, selector: &str)
+pub fn remove_html<T>(session: &mut ShinyContext<T>, selector: &str)
     where T: actix::Actor<Context = ShinyContext<T>>
 {
     let return_msg = serde_json::json!({
