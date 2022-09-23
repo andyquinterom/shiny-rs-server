@@ -22,11 +22,11 @@ pub trait ShinyLogic {
     }
     fn check_change(&mut self, msg: &super::ShinyMsg, key: &str) -> bool {
         let v: &serde_json::Value = &msg.data[key];
-        let prev_val = self.input().get(key).unwrap_or(&serde_json::Value::Null);
+        let prev_val = self.input().get::<serde_json::Value>(key).unwrap_or(serde_json::Value::Null);
         if v.is_null() & prev_val.is_null() {
             return false
         }
-        if prev_val.is_null() | (v != prev_val) {
+        if prev_val.is_null() | (v != &prev_val) {
             self.input().insert(key, v.clone());
             return true
         }
